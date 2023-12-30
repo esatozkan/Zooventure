@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '/ui/providers/google_ads_provider.dart';
 import '/ui/views/screens/games/know_what_hear_screen.dart';
 import '/ui/views/screens/games/know_what_real_animal_screen.dart';
 import '/ui/views/screens/games/know_what_type_animal_screen.dart';
@@ -9,8 +10,22 @@ import '/ui/views/screens/game_screen.dart';
 import '/ui/views/screens/listening_animal_sounds_screen.dart';
 import '/ui/views/screens/listening_animal_type_screen.dart';
 
-class MainScreen extends StatelessWidget {
+GoogleAdsProvider googleAdsProvider = GoogleAdsProvider();
+
+class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
+
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  @override
+  void initState() {
+    googleAdsProvider.loadBannerAd();
+    googleAdsProvider.loadInterstitialAd();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

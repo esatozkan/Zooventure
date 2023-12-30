@@ -1,6 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../screens/main_screen.dart';
 import '/ui/providers/page_change_provider.dart';
 import '/data/services/animal_service.dart';
 
@@ -28,16 +29,24 @@ class GridCardWidget extends StatelessWidget {
         itemBuilder: (context, index) => GestureDetector(
           onTap: () async {
             pageChangeProvider.getPage == 0
-                ? await voicePlayer.play(
-                    AssetSource(
-                      animals[index].animalType,
-                    ),
-                  )
-                : await voicePlayer.play(
-                    AssetSource(
-                      animals[index].animalVoice,
-                    ),
-                  );
+                ? await voicePlayer
+                    .play(
+                      AssetSource(
+                        animals[index].animalType,
+                      ),
+                    )
+                    .then(
+                      (value) => googleAdsProvider.showInterstitialAd(),
+                    )
+                : await voicePlayer
+                    .play(
+                      AssetSource(
+                        animals[index].animalVoice,
+                      ),
+                    )
+                    .then(
+                      (value) => googleAdsProvider.showInterstitialAd(),
+                    );
           },
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
