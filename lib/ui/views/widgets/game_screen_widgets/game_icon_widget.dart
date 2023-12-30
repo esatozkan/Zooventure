@@ -48,7 +48,7 @@ class GameIconWidget extends StatelessWidget {
               text,
               style: TextStyle(
                 fontFamily: "fontFamily",
-                fontSize: 18,
+                fontSize: 16,
                 color: bottomAppBarBgColor,
               ),
             ),

@@ -65,4 +65,28 @@ List<String> textId = [
   "Keluar",
 ];
 
+List<String> textPt = [
+  "Nomes de Animais",
+  "Sons de Animais",
+  "Jogos",
+  "Encontrar Imagem Real",
+  "Encontrar Imagem Virtual",
+  "Encontrar Nomes de Animais",
+  "Encontrar Sons de Animais",
+  "Repetir",
+  "Sair",
+];
+
+List<String> textRu = [
+  "Имена животных",
+  "Звуки животных",
+  "Игры",
+  "Найти реальное изображение",
+  "Найти виртуальное изображение",
+  "Найти имена животных",
+  "Найти звуки животных",
+  "Повторить",
+  "Выйти",
+];
+
 List<String> texts = [];

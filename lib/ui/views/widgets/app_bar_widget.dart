@@ -14,7 +14,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.white,
       actions: [
         Padding(
           padding: const EdgeInsets.only(top: 10, right: 10),
@@ -50,7 +50,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                     : texts[2],
             style: TextStyle(
                 color: bottomAppBarBgColor,
-                fontSize: 35,
+                fontSize: 25,
                 fontWeight: FontWeight.w600,
                 fontFamily: "fontFamily"),
           ),

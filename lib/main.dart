@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
@@ -39,6 +41,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     generateAnimal();
     generateText();
+    print(Platform.localeName.split("_")[0]);
+    print("***************");
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',

@@ -115,6 +115,8 @@ flutter:
     - assets/animals/animalsTypeID/
     - assets/animals/animalsTypeIT/
     - assets/animals/animalsTypeTR/
+    - assets/animals/animalsTypePT/
+    - assets/animals/animalsTypeRU/
     - assets/bottom_nav_bar/
     - assets/game_icons/
     - assets/games/
