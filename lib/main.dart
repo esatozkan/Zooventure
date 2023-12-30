@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '/ui/providers/question_game_provider.dart';
 import '/data/repository/generate_text.dart';
 import '/data/repository/generate_animal.dart';
 import '/ui/providers/page_change_provider.dart';
@@ -11,6 +12,9 @@ void main() {
       providers: [
         ListenableProvider(
           create: (_) => PageChangeProvider(),
+        ),
+        ListenableProvider(
+          create: (_) => QuestionGameProvider(),
         ),
       ],
       child: const MyApp(),

@@ -71,6 +71,8 @@ flutter:
     - assets/animals/animalsTypeIT/
     - assets/animals/animalsTypeTR/
     - assets/bottom_nav_bar/
+    - assets/game_icons/
+    - assets/games/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
