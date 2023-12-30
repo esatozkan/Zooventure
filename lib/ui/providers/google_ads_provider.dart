@@ -6,7 +6,7 @@ class GoogleAdsProvider with ChangeNotifier {
   InterstitialAd? interstitialAd;
   BannerAd? bannerAd;
   int interstitialAdIndex = 0;
-  int showInterstitialAdIndex = 3;
+  int showInterstitialAdIndex = 10;
   final String _loadInterstitialAdId = "ca-app-pub-3940256099942544/1033173712";
   final String _loadBannerAdId = "ca-app-pub-3940256099942544/6300978111";
 

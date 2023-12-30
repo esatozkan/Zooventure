@@ -62,16 +62,19 @@ class QuestionGameWidget extends StatelessWidget {
                       flex: 1,
                       child: Align(
                         alignment: Alignment.topLeft,
-                        child: GestureDetector(
-                          onTap: () {
-                            pageChangeProvider.setPage(2);
-                          },
-                          child: Image.asset(
-                            "assets/games/back_icon.png",
-                            height: 60,
-                            width: 60,
-                            fit: BoxFit.cover,
-                            color: const Color(0xffeb92e5),
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 10, left: 10),
+                          child: GestureDetector(
+                            onTap: () {
+                              pageChangeProvider.setPage(2);
+                            },
+                            child: Image.asset(
+                              "assets/games/back_icon.png",
+                              height: 60,
+                              width: 60,
+                              fit: BoxFit.cover,
+                              color: Colors.green,
+                            ),
                           ),
                         ),
                       ),
@@ -104,7 +107,7 @@ class QuestionGameWidget extends StatelessWidget {
                                       height: 150,
                                       width: 150,
                                       decoration: const BoxDecoration(
-                                          color: Color(0xffeb92e5)),
+                                          color: Colors.green),
                                       child: GestureDetector(
                                         onTap: () {
                                           if (whichQuestion ==
