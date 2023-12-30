@@ -4,7 +4,7 @@ import '/ui/views/screens/main_screen.dart';
 import '/data/repository/generate_question.dart';
 
 class QuestionGameProvider extends ChangeNotifier {
-  int numberOfQuestion = 7;
+  int numberOfQuestion = 6;
   int questionIndex = 0;
   bool answerControl = false;
   bool onTap = false;
@@ -34,7 +34,7 @@ class QuestionGameProvider extends ChangeNotifier {
     if (question[questionIndex].option.values.toList()[index] == false) {
       await audioPlayer.play(
         AssetSource(
-          "games/incorrect.mp3",
+          "games/incorrect.wav",
         ),
       );
       answerControl = !answerControl;
