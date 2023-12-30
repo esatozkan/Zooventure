@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
@@ -6,9 +7,10 @@ class GoogleAdsProvider with ChangeNotifier {
   BannerAd? bannerAd;
   int interstitialAdIndex = 0;
   int showInterstitialAdIndex = 3;
-  bool isVoice = false;
   final String _loadInterstitialAdId = "ca-app-pub-3940256099942544/1033173712";
   final String _loadBannerAdId = "ca-app-pub-3940256099942544/6300978111";
+
+  AudioPlayer audioPlayer = AudioPlayer();
 
   void loadInterstitialAd({bool showAfterLoad = false}) {
     InterstitialAd.load(
@@ -52,10 +54,5 @@ class GoogleAdsProvider with ChangeNotifier {
         },
       ),
     )..load();
-  }
-
-  void setIsVoice(bool val) {
-    isVoice = val;
-    notifyListeners();
   }
 }
