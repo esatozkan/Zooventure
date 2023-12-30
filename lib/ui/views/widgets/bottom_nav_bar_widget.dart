@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '/ui/views/screens/main_screen.dart';
 import '/ui/providers/page_change_provider.dart';
 import '/data/constants/constants.dart';
 
@@ -21,6 +22,7 @@ class BottomNavBar extends StatelessWidget {
           GestureDetector(
             onTap: () {
               pageChangeProvider.setPage(0);
+              googleAdsProvider.showInterstitialAd();
             },
             child: Opacity(
               opacity: pageChangeProvider.getPage == 0 ? 1 : 0.5,
@@ -36,6 +38,7 @@ class BottomNavBar extends StatelessWidget {
           GestureDetector(
             onTap: () {
               pageChangeProvider.setPage(1);
+              googleAdsProvider.showInterstitialAd();
             },
             child: Opacity(
               opacity: pageChangeProvider.getPage == 1 ? 1 : 0.5,
@@ -51,6 +54,7 @@ class BottomNavBar extends StatelessWidget {
           GestureDetector(
             onTap: () {
               pageChangeProvider.setPage(2);
+              googleAdsProvider.showInterstitialAd();
             },
             child: Opacity(
               opacity: pageChangeProvider.getPage == 2 ? 1 : 0.5,

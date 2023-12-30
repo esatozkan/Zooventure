@@ -2,6 +2,7 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '/ui/views/screens/main_screen.dart';
 import '/ui/views/widgets/game_screen_widgets/question_game_over_widget.dart';
 import '/data/repository/generate_question.dart';
 import '/ui/providers/page_change_provider.dart';
@@ -41,6 +42,8 @@ class QuestionGameWidget extends StatelessWidget {
                   .animalVoice,
             ),
           );
+        } else {
+          googleAdsProvider.showInterstitialAd();
         }
 
         return SafeArea(

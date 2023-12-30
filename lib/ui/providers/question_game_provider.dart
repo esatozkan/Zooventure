@@ -1,5 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import '/ui/views/screens/main_screen.dart';
 import '/data/repository/generate_question.dart';
 
 class QuestionGameProvider extends ChangeNotifier {
@@ -31,7 +32,7 @@ class QuestionGameProvider extends ChangeNotifier {
     answerControl = !answerControl;
 
     if (question[questionIndex].option.values.toList()[index] == false) {
-     await audioPlayer.play(
+      await audioPlayer.play(
         AssetSource(
           "games/incorrect.mp3",
         ),
@@ -53,12 +54,13 @@ class QuestionGameProvider extends ChangeNotifier {
             audioPlayer.play(
               AssetSource(question[questionIndex].question.animalType),
             );
-          }
-          if (isVoice == "knowWhatHearAnimalScreen" &&
+          } else if (isVoice == "knowWhatHearAnimalScreen" &&
               questionIndex != numberOfQuestion) {
             audioPlayer.play(
               AssetSource(question[questionIndex].question.animalVoice),
             );
+          } else {
+            googleAdsProvider.showInterstitialAd();
           }
         });
       }
