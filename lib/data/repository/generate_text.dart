@@ -12,5 +12,9 @@ void generateText() {
                   ? texts.addAll(textIt)
                   : Platform.localeName.split("_")[0] == "id"
                       ? texts.addAll(textId)
-                      : texts.addAll(textEn);
+                      : Platform.localeName.split("_")[0] == "pt"
+                          ? texts.addAll(textPt)
+                          : Platform.localeName.split("_")[0] == "ru"
+                              ? texts.addAll(textRu)
+                              : texts.addAll(textEn);
 }

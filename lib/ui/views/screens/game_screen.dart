@@ -45,7 +45,7 @@ class GameScreen extends StatelessWidget {
             ),
           ),
           GridView.builder(
-            padding: const EdgeInsets.only(top: 50),
+            padding: const EdgeInsets.only(top: 50,left: 10,right: 10),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
             ),

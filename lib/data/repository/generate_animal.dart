@@ -19,7 +19,11 @@ void generateAnimal() {
                       ? it[i]
                       : Platform.localeName.split("_")[0] == "de"
                           ? de[i]
-                          : en[i],
+                          : Platform.localeName.split("_")[0] == "pt"
+                              ? pt[i]
+                              : Platform.localeName.split("_")[0] == "ru"
+                                  ? ru[i]
+                                  : en[i],
     );
     animals.add(animalModel);
   }

@@ -17,10 +17,11 @@ class GridCardWidget extends StatelessWidget {
       padding: const EdgeInsets.only(
         right: 10,
         left: 10,
+        top: 10,
       ),
       child: GridView.builder(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: MediaQuery.of(context).size.width < 800 ? 3 : 4,
           crossAxisSpacing: 15,
           mainAxisSpacing: 10,
           childAspectRatio: .7,
