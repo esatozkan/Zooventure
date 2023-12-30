@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import '/ui/views/screens/main_screen.dart';
 import '/ui/views/widgets/game_screen_widgets/question_game_over_widget.dart';
@@ -225,6 +226,19 @@ class QuestionGameWidget extends StatelessWidget {
                         },
                       ),
                     ),
+                    googleAdsProvider.bannerAd != null
+                        ? Align(
+                            alignment: Alignment.bottomCenter,
+                            child: SafeArea(
+                                child: SizedBox(
+                              width: googleAdsProvider.bannerAd!.size.width
+                                  .toDouble(),
+                              height: googleAdsProvider.bannerAd!.size.height
+                                  .toDouble(),
+                              child: AdWidget(ad: googleAdsProvider.bannerAd!),
+                            )),
+                          )
+                        : Container(),
                   ],
                 ),
                 QuestionGameOverWidget(whichQuestion: whichQuestion),
