@@ -6,6 +6,8 @@ List<String> textTr = [
   "Sanal Resmi Bul",
   "Hayvan İsimlerini Bil",
   "Hayvan Seslerini Bil",
+  "Tekrar",
+  "Çıkış"
 ];
 List<String> textEn = [
   "Animal Names",
@@ -15,6 +17,8 @@ List<String> textEn = [
   "Find Virtual Image",
   "Find Animal Names",
   "Find Animal Sounds",
+  "Replay",
+  "Quit",
 ];
 List<String> textHi = [
   "जानवरों के नाम",
@@ -24,6 +28,8 @@ List<String> textHi = [
   "आभासिक छवि ढूंढें",
   "जानवरों के नाम ढूंढें",
   "जानवरों की आवाज़ें ढूंढें",
+  "पुनः खेलें",
+  "बंद करें",
 ];
 List<String> textDe = [
   "Tierbezeichnungen",
@@ -33,6 +39,8 @@ List<String> textDe = [
   "Virtuelles Bild Finden",
   "Tierbezeichnungen Finden",
   "Tiergeräusche Finden",
+  "Wiederholen",
+  "Beenden",
 ];
 List<String> textIt = [
   "Nomi Degli Animali",
@@ -42,6 +50,8 @@ List<String> textIt = [
   "Trova immagine Virtuale",
   "Trova Nomi Degli Animali",
   "Trova Suoni Degli Animali",
+  "Rigioca",
+  "Esci",
 ];
 List<String> textId = [
   "Nama-Nama Hewan",
@@ -51,6 +61,8 @@ List<String> textId = [
   "Cari Gambar Virtual",
   "Cari Nama-Nama Hewan",
   "Cari Suara Hewan",
+  "Main Ulang",
+  "Keluar",
 ];
 
 List<String> texts = [];

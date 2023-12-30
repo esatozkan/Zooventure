@@ -8,10 +8,23 @@ class ListeningAnimalTypeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: AppBarWidget(),
-      body: GridCardWidget(),
-      bottomNavigationBar: BottomNavBar(),
+    return Scaffold(
+      appBar: const AppBarWidget(),
+      body: Stack(
+        children: [
+          Center(
+            child: Image.asset(
+              "assets/bottom_nav_bar/listening_animal_types_icon.png",
+              height: MediaQuery.of(context).size.height / 2,
+              width: MediaQuery.of(context).size.width ,
+              fit: BoxFit.cover,
+              color: Colors.grey.shade400,
+            ),
+          ),
+          const GridCardWidget(),
+        ],
+      ),
+      bottomNavigationBar: const BottomNavBar(),
     );
   }
 }
