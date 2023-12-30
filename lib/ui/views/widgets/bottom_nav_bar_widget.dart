@@ -14,7 +14,7 @@ class BottomNavBar extends StatelessWidget {
         Provider.of<PageChangeProvider>(context);
     return Container(
       width: width,
-      height: 60,
+      height: MediaQuery.of(context).size.width < 800 ? 60 : 120,
       color: bottomAppBarBgColor,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -28,8 +28,8 @@ class BottomNavBar extends StatelessWidget {
               opacity: pageChangeProvider.getPage == 0 ? 1 : 0.5,
               child: Image.asset(
                 "assets/bottom_nav_bar/listening_animal_types_icon.png",
-                height: 40,
-                width: 40,
+                height: MediaQuery.of(context).size.width < 800 ? 40 : 70,
+                width: MediaQuery.of(context).size.width < 800 ? 40 : 70,
                 color: Colors.white,
                 fit: BoxFit.cover,
               ),
@@ -44,8 +44,8 @@ class BottomNavBar extends StatelessWidget {
               opacity: pageChangeProvider.getPage == 1 ? 1 : 0.5,
               child: Image.asset(
                 "assets/bottom_nav_bar/listening_animal_sounds_icon.png",
-                height: 40,
-                width: 40,
+                height: MediaQuery.of(context).size.width < 800 ? 40 : 70,
+                width: MediaQuery.of(context).size.width < 800 ? 40 : 70,
                 color: Colors.white,
                 fit: BoxFit.cover,
               ),
@@ -60,8 +60,8 @@ class BottomNavBar extends StatelessWidget {
               opacity: pageChangeProvider.getPage == 2 ? 1 : 0.5,
               child: Image.asset(
                 "assets/bottom_nav_bar/game_icon.png",
-                height: 40,
-                width: 40,
+                height: MediaQuery.of(context).size.width < 800 ? 40 : 70,
+                width: MediaQuery.of(context).size.width < 800 ? 40 : 70,
                 color: Colors.white,
                 fit: BoxFit.cover,
               ),

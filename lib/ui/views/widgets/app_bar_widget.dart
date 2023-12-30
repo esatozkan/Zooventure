@@ -15,6 +15,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.white,
+      centerTitle: true,
       actions: [
         Padding(
           padding: const EdgeInsets.only(top: 10, right: 10),
@@ -32,8 +33,8 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
               },
               child: Image.asset(
                 "assets/zooventure_pro.gif",
-                height: 60,
-                width: 60,
+                height: MediaQuery.of(context).size.width < 800 ? 60 : 80,
+                width: MediaQuery.of(context).size.width < 800 ? 60 : 80,
                 fit: BoxFit.cover,
               ),
             ),
@@ -41,19 +42,17 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         ),
       ],
       title: Consumer<PageChangeProvider>(
-        builder: (context, pageChangeProvider, _) => Center(
-          child: Text(
-            pageChangeProvider.getPage == 0
-                ? texts[0]
-                : pageChangeProvider.getPage == 1
-                    ? texts[1]
-                    : texts[2],
-            style: TextStyle(
-                color: bottomAppBarBgColor,
-                fontSize: 25,
-                fontWeight: FontWeight.w600,
-                fontFamily: "fontFamily"),
-          ),
+        builder: (context, pageChangeProvider, _) => Text(
+          pageChangeProvider.getPage == 0
+              ? texts[0]
+              : pageChangeProvider.getPage == 1
+                  ? texts[1]
+                  : texts[2],
+          style: TextStyle(
+              color: bottomAppBarBgColor,
+              fontSize: MediaQuery.of(context).size.width < 800 ? 25 : 40,
+              fontWeight: FontWeight.w600,
+              fontFamily: "fontFamily"),
         ),
       ),
     );

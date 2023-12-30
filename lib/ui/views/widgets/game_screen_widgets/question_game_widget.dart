@@ -70,8 +70,12 @@ class QuestionGameWidget extends StatelessWidget {
                             },
                             child: Image.asset(
                               "assets/games/back_icon.png",
-                              height: 60,
-                              width: 60,
+                              height: MediaQuery.of(context).size.width < 800
+                                  ? 60
+                                  : 120,
+                              width: MediaQuery.of(context).size.width < 800
+                                  ? 60
+                                  : 120,
                               fit: BoxFit.cover,
                               color: Colors.green,
                             ),
@@ -104,8 +108,15 @@ class QuestionGameWidget extends StatelessWidget {
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(20),
                                     child: Container(
-                                      height: 150,
-                                      width: 150,
+                                      height:
+                                          MediaQuery.of(context).size.width <
+                                                  800
+                                              ? 150
+                                              : 250,
+                                      width: MediaQuery.of(context).size.width <
+                                              800
+                                          ? 150
+                                          : 250,
                                       decoration: const BoxDecoration(
                                           color: Colors.green),
                                       child: GestureDetector(
@@ -131,9 +142,14 @@ class QuestionGameWidget extends StatelessWidget {
                                             );
                                           }
                                         },
-                                        child: const Icon(
+                                        child: Icon(
                                           Icons.hearing,
-                                          size: 60,
+                                          size: MediaQuery.of(context)
+                                                      .size
+                                                      .width <
+                                                  800
+                                              ? 60
+                                              : 100,
                                           color: Colors.white,
                                         ),
                                       ),
@@ -146,14 +162,16 @@ class QuestionGameWidget extends StatelessWidget {
                     Expanded(
                       flex: 4,
                       child: GridView.builder(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
-                          mainAxisSpacing: 20,
-                          crossAxisSpacing: 20,
+                          mainAxisSpacing:
+                              MediaQuery.of(context).size.width < 800 ? 20 : 0,
+                          crossAxisSpacing:
+                              MediaQuery.of(context).size.width < 800 ? 20 : 0,
                         ),
                         itemCount: 4,
-                        padding: const EdgeInsets.all(20),
+                        padding: EdgeInsets.all(
+                            MediaQuery.of(context).size.width < 800 ? 20 : 50),
                         itemBuilder: (context, index) {
                           return Stack(
                             children: [
@@ -204,8 +222,14 @@ class QuestionGameWidget extends StatelessWidget {
                                             .keys
                                             .toList()[index]
                                             .animalRealImage,
-                                    height: 150,
-                                    width: 150,
+                                    height:
+                                        MediaQuery.of(context).size.width < 800
+                                            ? 150
+                                            : 250,
+                                    width:
+                                        MediaQuery.of(context).size.width < 800
+                                            ? 150
+                                            : 250,
                                     fit: BoxFit.cover,
                                   ),
                                 ),

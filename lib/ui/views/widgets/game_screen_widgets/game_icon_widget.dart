@@ -37,8 +37,8 @@ class GameIconWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(30),
             child: Image.asset(
               icon,
-              height: 120,
-              width: 120,
+              height: MediaQuery.of(context).size.width < 800 ? 120 : 180,
+              width: MediaQuery.of(context).size.width < 800 ? 120 : 180,
               fit: BoxFit.cover,
             ),
           ),
@@ -48,7 +48,7 @@ class GameIconWidget extends StatelessWidget {
               text,
               style: TextStyle(
                 fontFamily: "fontFamily",
-                fontSize: 16,
+                fontSize: MediaQuery.of(context).size.width < 800 ? 16 : 22,
                 color: bottomAppBarBgColor,
               ),
             ),
