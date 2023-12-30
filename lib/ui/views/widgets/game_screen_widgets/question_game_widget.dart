@@ -229,19 +229,26 @@ class QuestionGameWidget extends StatelessWidget {
                         },
                       ),
                     ),
-                    googleAdsProvider.bannerAd != null
-                        ? Align(
-                            alignment: Alignment.bottomCenter,
-                            child: SafeArea(
-                                child: SizedBox(
-                              width: googleAdsProvider.bannerAd!.size.width
-                                  .toDouble(),
-                              height: googleAdsProvider.bannerAd!.size.height
-                                  .toDouble(),
-                              child: AdWidget(ad: googleAdsProvider.bannerAd!),
-                            )),
-                          )
-                        : Container(),
+                    Visibility(
+                      visible:
+                          googleAdsProvider.bannerAd == null ? true : false,
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: SafeArea(
+                          child: SizedBox(
+                            width: googleAdsProvider.bannerAd != null
+                                ? googleAdsProvider.bannerAd!.size.width
+                                    .toDouble()
+                                : 0,
+                            height: googleAdsProvider.bannerAd != null
+                                ? googleAdsProvider.bannerAd!.size.height
+                                    .toDouble()
+                                : 0,
+                            child: AdWidget(ad: googleAdsProvider.bannerAd!),
+                          ),
+                        ),
+                      ),
+                    )
                   ],
                 ),
                 QuestionGameOverWidget(whichQuestion: whichQuestion),
