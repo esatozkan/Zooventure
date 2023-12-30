@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '/data/constants/constants.dart';
 import '/data/services/text_service.dart';
 import '/ui/providers/page_change_provider.dart';
@@ -14,6 +15,31 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.transparent,
+      actions: [
+        Padding(
+          padding: const EdgeInsets.only(top: 10, right: 10),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: GestureDetector(
+              onTap: () async {
+                const url =
+                    "https://play.google.com/store/apps/details?id=com.oyunakademisi.zooventure";
+                // ignore: deprecated_member_use
+                if (await canLaunch(url)) {
+                  // ignore: deprecated_member_use
+                  await launch(url);
+                }
+              },
+              child: Image.asset(
+                "assets/zooventure_pro.gif",
+                height: 60,
+                width: 60,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+        ),
+      ],
       title: Consumer<PageChangeProvider>(
         builder: (context, pageChangeProvider, _) => Center(
           child: Text(
@@ -23,11 +49,10 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                     ? texts[1]
                     : texts[2],
             style: TextStyle(
-              color: bottomAppBarBgColor,
-              fontSize: 35,
-              fontWeight: FontWeight.w600,
-              fontFamily: "fontFamily"
-            ),
+                color: bottomAppBarBgColor,
+                fontSize: 35,
+                fontWeight: FontWeight.w600,
+                fontFamily: "fontFamily"),
           ),
         ),
       ),
