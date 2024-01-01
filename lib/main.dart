@@ -29,8 +29,6 @@ void main() {
   );
 }
 
-//version numarası 10 olacak
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
