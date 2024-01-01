@@ -20,7 +20,7 @@ void main() {
         ListenableProvider(
           create: (_) => QuestionGameProvider(),
         ),
-        ListenableProvider(
+        ChangeNotifierProvider(
           create: (_) => GoogleAdsProvider(),
         ),
       ],

@@ -21,6 +21,14 @@ class QuestionGameWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     AudioPlayer audioPlayer = AudioPlayer();
 
+    if (googleAdsProvider.bannerAd != null) {
+      print("banner ad null değil");
+      print("**********");
+    } else {
+      print("null");
+      print("***************");
+    }
+
     return Consumer<PageChangeProvider>(
       builder: (context, pageChangeProvider, _) {
         Provider.of<QuestionGameProvider>(context, listen: false).resetGame();
@@ -253,26 +261,22 @@ class QuestionGameWidget extends StatelessWidget {
                         },
                       ),
                     ),
-                    Visibility(
-                      visible:
-                          googleAdsProvider.bannerAd == null ? true : false,
+                    Expanded(
+                      flex: 1,
                       child: Align(
                         alignment: Alignment.bottomCenter,
                         child: SafeArea(
                           child: SizedBox(
-                            width: googleAdsProvider.bannerAd != null
-                                ? googleAdsProvider.bannerAd!.size.width
-                                    .toDouble()
-                                : 0,
-                            height: googleAdsProvider.bannerAd != null
-                                ? googleAdsProvider.bannerAd!.size.height
-                                    .toDouble()
-                                : 0,
-                            child: AdWidget(ad: googleAdsProvider.bannerAd!),
+                            width: MediaQuery.of(context).size.width,
+                            height: 50,
+                            child:
+                                googleAdsProvider.getIsBannerAdLoaded != false
+                                    ? AdWidget(ad: googleAdsProvider.bannerAd!)
+                                    : const Text(""),
                           ),
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
                 QuestionGameOverWidget(whichQuestion: whichQuestion),
