@@ -7,7 +7,7 @@ List<String> textTr = [
   "Hayvan İsimlerini Bil",
   "Hayvan Seslerini Bil",
   "Tekrar",
-  "Çıkış"
+  "Çıkış",
 ];
 List<String> textEn = [
   "Animal Names",

@@ -3,10 +3,11 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import '/ui/providers/google_ads_provider.dart';
 import '/ui/providers/question_game_provider.dart';
-import '/data/repository/generate_text.dart';
-import '/data/repository/generate_animal.dart';
 import '/ui/providers/page_change_provider.dart';
 import '/ui/views/screens/main_screen.dart';
+import 'data/repository/generate_animal.dart';
+import 'data/repository/generate_text.dart';
+import 'data/repository/set_flag_image.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     generateAnimal();
     generateText();
+    setFlagImage(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',

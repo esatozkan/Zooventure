@@ -24,41 +24,46 @@ class QuestionGameOverWidget extends StatelessWidget {
                   questionGameProvider.getNumberOfQuestion
               ? true
               : false,
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset(
-                  "assets/games/game_over.gif",
-                  height: MediaQuery.of(context).size.height/2,
-                  width: MediaQuery.of(context).size.width,
-                  fit: BoxFit.cover,
-                ),
-                TextButton(
-                  onPressed: () {
-                    if (whichQuestion == "knowWhatRealImage") {
-                      pageChangeProvider.setPage(4);
-                    } else if (whichQuestion == "knowWhatVirtualImage") {
-                      pageChangeProvider.setPage(6);
-                    } else if (whichQuestion == "knowWhatAnimalTypeScreen") {
-                      pageChangeProvider.setPage(5);
-                    } else if (whichQuestion == "knowWhatHearAnimalScreen") {
-                      pageChangeProvider.setPage(3);
-                    }
-                  },
-                  child: textButton(
-                    texts[7],
-                    40,
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            color: Colors.white,
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    "assets/games/game_over.gif",
+                    height: MediaQuery.of(context).size.height,
+                    width: MediaQuery.of(context).size.width/2,
+                    fit: BoxFit.cover,
                   ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    pageChangeProvider.setPage(2);
-                  },
-                  child: textButton(texts[8], 60),
-                ),
-              ],
+                  TextButton(
+                    onPressed: () {
+                      if (whichQuestion == "knowWhatRealImage") {
+                        pageChangeProvider.setPage(4);
+                      } else if (whichQuestion == "knowWhatVirtualImage") {
+                        pageChangeProvider.setPage(6);
+                      } else if (whichQuestion == "knowWhatAnimalTypeScreen") {
+                        pageChangeProvider.setPage(5);
+                      } else if (whichQuestion == "knowWhatHearAnimalScreen") {
+                        pageChangeProvider.setPage(3);
+                      }
+                    },
+                    child: textButton(
+                      texts[7],
+                      40,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      pageChangeProvider.setPage(2);
+                    },
+                    child: textButton(texts[8], 60),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

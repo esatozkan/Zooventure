@@ -4,7 +4,7 @@ import '/ui/views/screens/main_screen.dart';
 import '/data/repository/generate_question.dart';
 
 class QuestionGameProvider extends ChangeNotifier {
-  int numberOfQuestion = 6;
+  int numberOfQuestion = 2;
   int questionIndex = 0;
   bool answerControl = false;
   bool onTap = false;

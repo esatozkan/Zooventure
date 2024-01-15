@@ -17,7 +17,6 @@ class GridCardWidget extends StatelessWidget {
       padding: const EdgeInsets.only(
         right: 10,
         left: 10,
-        top: 10,
       ),
       child: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

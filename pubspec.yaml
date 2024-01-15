@@ -38,7 +38,6 @@ dependencies:
   audioplayers: ^5.2.1
   google_mobile_ads: ^3.1.0
   flutter_native_splash: ^2.3.8
-  url_launcher: ^6.2.2
 
 dev_dependencies:
   flutter_test:
@@ -121,6 +120,7 @@ flutter:
     - assets/game_icons/
     - assets/games/
     - assets/app_icon/
+    - assets/flags/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -134,10 +134,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  fonts:
-    - family: fontFamily
-      fonts:
-        - asset: assets/fonts/Jokerman.ttf
+  # fonts:
+  #   - family: fontFamily
+  #     fonts:
+  #       - asset: assets/fonts/Jokerman.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
