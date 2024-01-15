@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import '/data/services/text_service.dart';
 import '/ui/views/widgets/game_screen_widgets/game_icon_widget.dart';
-import '../widgets/app_bar_widget.dart';
-import '../widgets/bottom_nav_bar_widget.dart';
 
 class GameScreen extends StatelessWidget {
   const GameScreen({super.key});
@@ -31,30 +29,13 @@ class GameScreen extends StatelessWidget {
         whichFunction: "knowWhatHearGame",
       ),
     ];
-    return Scaffold(
-      appBar: const AppBarWidget(),
-      body: Stack(
-        children: [
-          Center(
-            child: Image.asset(
-              "assets/bottom_nav_bar/game_icon.png",
-              height: MediaQuery.of(context).size.height / 2,
-              width: MediaQuery.of(context).size.width,
-              fit: BoxFit.cover,
-              color: Colors.grey.shade400,
-            ),
-          ),
-          GridView.builder(
-            padding: const EdgeInsets.only(top: 50,left: 10,right: 10),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-            ),
-            itemCount: games.length,
-            itemBuilder: (context, index) => games[index],
-          ),
-        ],
+    return GridView.builder(
+      padding: const EdgeInsets.only(top: 50, left: 10, right: 10),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
       ),
-      bottomNavigationBar: const BottomNavBar(),
+      itemCount: games.length,
+      itemBuilder: (context, index) => games[index],
     );
   }
 }

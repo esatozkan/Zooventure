@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:math';
 import '/data/models/animal_model.dart';
 import '/data/services/animal_service.dart';
 
@@ -27,5 +26,4 @@ void generateAnimal() {
     );
     animals.add(animalModel);
   }
-  animals.shuffle(Random());
 }

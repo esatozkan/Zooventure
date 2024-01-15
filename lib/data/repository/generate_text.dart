@@ -18,3 +18,4 @@ void generateText() {
                               ? texts.addAll(textRu)
                               : texts.addAll(textEn);
 }
+
