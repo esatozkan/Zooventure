@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
+import '/ui/providers/in_app_purchase_provider.dart';
+import '/ui/providers/parent_control_provider.dart';
 import '/ui/providers/google_ads_provider.dart';
 import '/ui/providers/question_game_provider.dart';
 import '/ui/providers/page_change_provider.dart';
@@ -23,6 +25,12 @@ void main() {
         ),
         ChangeNotifierProvider(
           create: (_) => GoogleAdsProvider(),
+        ),
+        ListenableProvider(
+          create: (_) => ParentControlProvider(),
+        ),
+        ListenableProvider(
+          create: (_) => InAppPurchaseProvider(),
         ),
       ],
       child: const MyApp(),
