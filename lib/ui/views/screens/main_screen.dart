@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '/ui/providers/in_app_purchase_provider.dart';
 import '../widgets/bottom_nav_bar_widget.dart';
 import '../widgets/app_bar_widgets/app_bar_widget.dart';
 import '/ui/providers/google_ads_provider.dart';
@@ -24,6 +25,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
+    Provider.of<InAppPurchaseProvider>(context, listen: false).getProducts();
     googleAdsProvider.loadBannerAd();
     googleAdsProvider.loadInterstitialAd();
     super.initState();
@@ -64,7 +66,7 @@ class _MainScreenState extends State<MainScreen> {
                 ),
                 const AppBarWidget(),
                 Padding(
-                    padding: const EdgeInsets.only(top: 120,bottom: 60),
+                    padding: const EdgeInsets.only(top: 120, bottom: 60),
                     child: pages[pageChangeProvider.getPage]),
                 const Align(
                   alignment: Alignment.bottomCenter,

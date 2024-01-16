@@ -3,6 +3,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '/data/constants/constants.dart';
 import '/data/services/text_service.dart';
 import 'in_app_purchase_icon_widget.dart';
+import 'show_modal_bottom_sheet_widget.dart';
 
 class InAppPurchaseWidget extends StatelessWidget {
   const InAppPurchaseWidget({super.key});
@@ -23,24 +24,23 @@ class InAppPurchaseWidget extends StatelessWidget {
       ),
       InAppPurchaseIconWidget(
         image: "assets/in_app_purchase_icon/play_console_logo.jpg",
-        text: texts[11],
-        onTap: () async {
-          const url =
-              "https://play.google.com/store/apps/details?id=com.oyunakademisi.zooventure";
-          if (await canLaunch(url)) {
-            await launch(url);
-          }
+        text: texts[12],
+        onTap: () {
+          showModalBottomSheetWidget(context, 0);
         },
       ),
       InAppPurchaseIconWidget(
         image: "assets/in_app_purchase_icon/play_console_logo.jpg",
-        text: texts[11],
-        onTap: () async {
-          const url =
-              "https://play.google.com/store/apps/details?id=com.oyunakademisi.zooventure";
-          if (await canLaunch(url)) {
-            await launch(url);
-          }
+        text: texts[13],
+        onTap: () {
+          showModalBottomSheetWidget(context, 3);
+        },
+      ),
+      InAppPurchaseIconWidget(
+        image: "assets/in_app_purchase_icon/play_console_logo.jpg",
+        text: texts[14],
+        onTap: () {
+          showModalBottomSheetWidget(context, 6);
         },
       ),
     ];
@@ -71,7 +71,7 @@ class InAppPurchaseWidget extends StatelessWidget {
           crossAxisSpacing: 20,
           childAspectRatio: .8,
         ),
-        itemCount: 3,
+        itemCount: iconList.length,
         itemBuilder: (context, index) => iconList[index],
       ),
     );
