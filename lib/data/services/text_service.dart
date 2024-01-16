@@ -8,6 +8,9 @@ List<String> textTr = [
   "Hayvan Seslerini Bil",
   "Tekrar",
   "Çıkış",
+  "Aile Kontrolü",
+  "Oyun Mağazası",
+  "Diğer Uygulamalar"
 ];
 List<String> textEn = [
   "Animal Names",
@@ -19,6 +22,9 @@ List<String> textEn = [
   "Find Animal Sounds",
   "Replay",
   "Quit",
+  "Parent Control",
+  "Game Store",
+  "Other Applications",
 ];
 List<String> textHi = [
   "जानवरों के नाम",
@@ -30,6 +36,9 @@ List<String> textHi = [
   "जानवरों की आवाज़ें ढूंढें",
   "पुनः खेलें",
   "बंद करें",
+  "अभिभावक नियंत्रण",
+  "खेल की दुकान",
+  "अन्य अनुप्रयोगों",
 ];
 List<String> textDe = [
   "Tierbezeichnungen",
@@ -41,6 +50,9 @@ List<String> textDe = [
   "Tiergeräusche Finden",
   "Wiederholen",
   "Beenden",
+  "Elternkontrolle",
+  "Spieleladen",
+  "Andere Anwendungen",
 ];
 List<String> textIt = [
   "Nomi Degli Animali",
@@ -52,6 +64,9 @@ List<String> textIt = [
   "Trova Suoni Degli Animali",
   "Rigioca",
   "Esci",
+  "Controllo Genitoriale",
+  "Negozio di giochi",
+  "altre applicazioni",
 ];
 List<String> textId = [
   "Nama-Nama Hewan",
@@ -63,6 +78,9 @@ List<String> textId = [
   "Cari Suara Hewan",
   "Main Ulang",
   "Keluar",
+  "Kendali Orang Tua",
+  "Toko mainan",
+  "Aplikasi lain",
 ];
 
 List<String> textPt = [
@@ -75,6 +93,9 @@ List<String> textPt = [
   "Encontrar Sons de Animais",
   "Repetir",
   "Sair",
+  "Controle Dos Pais",
+  "Loja De Jogos",
+  "Outras Aplicações",
 ];
 
 List<String> textRu = [
@@ -87,6 +108,9 @@ List<String> textRu = [
   "Найти звуки животных",
   "Повторить",
   "Выйти",
+  "родительский контроль",
+  "Магазин игр",
+  "другие приложения",
 ];
 
 List<String> texts = [];

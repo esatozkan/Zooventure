@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../widgets/bottom_nav_bar_widget.dart';
-import '/ui/views/widgets/app_bar_widget.dart';
+import '../widgets/app_bar_widgets/app_bar_widget.dart';
 import '/ui/providers/google_ads_provider.dart';
 import '/ui/views/screens/games/know_what_hear_screen.dart';
 import '/ui/views/screens/games/know_what_real_animal_screen.dart';
