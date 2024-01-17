@@ -9,7 +9,7 @@ Future<dynamic> showModalBottomSheetWidget(
   InAppPurchaseProvider inAppPurchaseProvider =
       Provider.of(context, listen: false);
   return showModalBottomSheet(
-    backgroundColor: Colors.red,
+    backgroundColor: const Color(0xfff6e2fe),
     context: context,
     builder: (_) {
       return SingleChildScrollView(
@@ -33,6 +33,28 @@ Future<dynamic> showModalBottomSheetWidget(
                       showInformationSnackbar(context, texts[15]);
                     }
                   }
+                  if (productIndex == 3) {
+                    Navigator.of(context).pop();
+                    if (!inAppPurchaseProvider.getIsLanguageSubscribed) {
+                      inAppPurchaseProvider.getIApEngine.handlePurchase(
+                          inAppPurchaseProvider
+                              .getProductsDetails[index + productIndex],
+                          inAppPurchaseProvider.getProductIds);
+                    } else {
+                      showInformationSnackbar(context, texts[15]);
+                    }
+                  }
+                  if (productIndex == 6) {
+                    Navigator.of(context).pop();
+                    if (!inAppPurchaseProvider.getIsPremiumSubscribed) {
+                      inAppPurchaseProvider.getIApEngine.handlePurchase(
+                          inAppPurchaseProvider
+                              .getProductsDetails[index + productIndex],
+                          inAppPurchaseProvider.getProductIds);
+                    } else {
+                      showInformationSnackbar(context, texts[15]);
+                    }
+                  }
                 },
                 child: Container(
                   margin:
@@ -45,11 +67,23 @@ Future<dynamic> showModalBottomSheetWidget(
                   ),
                   child: ListTile(
                     title: Text(inAppPurchaseProvider
-                        .getProductsDetails[index + productIndex].title),
-                    subtitle: Text(inAppPurchaseProvider
                         .getProductsDetails[index + productIndex].description),
-                    trailing: Text(inAppPurchaseProvider
-                        .getProductsDetails[index + productIndex].price),
+                    subtitle: productIndex == 0
+                        ? const Text("Remove Ads")
+                        : productIndex == 3
+                            ? const Text("Language Options Available")
+                            : const Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("Remove Ads"),
+                                  Text("Language Options Available")
+                                ],
+                              ),
+                    trailing: Text(
+                      inAppPurchaseProvider
+                          .getProductsDetails[index + productIndex].price,
+                      style: const TextStyle(fontSize: 20),
+                    ),
                   ),
                 ),
               ),

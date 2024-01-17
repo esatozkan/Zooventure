@@ -21,7 +21,7 @@ class InAppPurchaseProvider extends ChangeNotifier {
 
   bool isRemoveAdSubscribed = OnePref.getRemoveAds() ?? false;
   bool isLanguageSubscribed = OnePref.getBool("isLanguageSubscribed") ?? false;
-  bool isPremiumSubscribed = false;
+  bool isPremiumSubscribed = OnePref.getPremium() ?? false;
 
   IApEngine iApEngine = IApEngine();
 
@@ -117,11 +117,75 @@ class InAppPurchaseProvider extends ChangeNotifier {
               purchaseDetails.status == PurchaseStatus.purchased) {
             Map purchaseData = json
                 .decode(purchaseDetails.verificationData.localVerificationData);
+
+            if (purchaseData["acknowledged"]) {
+              //restore purchase
+              isLanguageSubscribed = true;
+              OnePref.setBool("isLanguageSubscribed", isLanguageSubscribed);
+            } else {
+              //first time purchase
+              if (Platform.isAndroid) {
+                final InAppPurchaseAndroidPlatformAddition androidAddition =
+                    iApEngine.inAppPurchase.getPlatformAddition<
+                        InAppPurchaseAndroidPlatformAddition>();
+                await androidAddition
+                    .consumePurchase(purchaseDetails)
+                    .then((value) {
+                  updateIsLanguageSubscription(true);
+                });
+              }
+
+              //complete purchase
+              if (purchaseDetails.pendingCompletePurchase) {
+                await iApEngine.inAppPurchase
+                    .completePurchase(purchaseDetails)
+                    .then((value) {
+                  updateIsLanguageSubscription(true);
+                });
+              }
+            }
           }
         } else {
           updateIsLanguageSubscription(false);
         }
-      } else {}
+      } else {
+        if (list.isNotEmpty) {
+          if (purchaseDetails.status == PurchaseStatus.restored ||
+              purchaseDetails.status == PurchaseStatus.purchased) {
+            Map purchaseData = json
+                .decode(purchaseDetails.verificationData.localVerificationData);
+
+            if (purchaseData["acknowledged"]) {
+              //restore purchase
+              isPremiumSubscribed = true;
+              OnePref.setPremium(isPremiumSubscribed);
+            } else {
+              //first time purchase
+              if (Platform.isAndroid) {
+                final InAppPurchaseAndroidPlatformAddition androidAddition =
+                    iApEngine.inAppPurchase.getPlatformAddition<
+                        InAppPurchaseAndroidPlatformAddition>();
+                await androidAddition
+                    .consumePurchase(purchaseDetails)
+                    .then((value) {
+                  updateIsPremiumSubscription(true);
+                });
+              }
+
+              //complete purchase
+              if (purchaseDetails.pendingCompletePurchase) {
+                await iApEngine.inAppPurchase
+                    .completePurchase(purchaseDetails)
+                    .then((value) {
+                  updateIsPremiumSubscription(true);
+                });
+              }
+            }
+          }
+        } else {
+          updateIsPremiumSubscription(false);
+        }
+      }
     }
   }
 
@@ -137,8 +201,13 @@ class InAppPurchaseProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void updateIsPremiumSubscription(bool value) {
+    isPremiumSubscribed = value;
+    OnePref.setPremium(isPremiumSubscribed);
+    notifyListeners();
+  }
 
-  void restoreSubscription(){
+  void restoreSubscription() {
     iApEngine.inAppPurchase.restorePurchases();
   }
 }

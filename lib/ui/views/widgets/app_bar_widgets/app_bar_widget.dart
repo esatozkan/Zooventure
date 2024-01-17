@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '/ui/providers/in_app_purchase_provider.dart';
 import '/ui/providers/parent_control_provider.dart';
 import '../../../../data/constants/constants.dart';
 import '../../../../data/repository/change_language.dart';
@@ -19,6 +20,8 @@ class _AppBarWidgetState extends State<AppBarWidget> {
   Widget build(BuildContext context) {
     ParentControlProvider parentControlProvider =
         Provider.of(context, listen: false);
+    InAppPurchaseProvider inAppPurchaseProvider =
+        Provider.of(context, listen: false);
     parentControlProvider.generateProcess();
     List<String> flags = [
       "assets/flags/de.png",
@@ -30,6 +33,9 @@ class _AppBarWidgetState extends State<AppBarWidget> {
       "assets/flags/ru.png",
       "assets/flags/tr.png",
     ];
+    print(inAppPurchaseProvider.getIsLanguageSubscribed);
+    print(inAppPurchaseProvider.getIsPremiumSubscribed);
+    print(inAppPurchaseProvider.getIsRemoveAdSubscribed);
     return SafeArea(
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
@@ -117,18 +123,34 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                                           itemBuilder: (context, index) =>
                                               GestureDetector(
                                             onTap: () {
-                                              changeLanguage(index);
-                                              pageChangeProvider
-                                                  .setFlagIndex(index);
-                                              Navigator.of(context).pop();
-                                              setState(() {
-                                                texts[0] = texts[0];
-                                                texts[1] = texts[1];
-                                                texts[2] = texts[2];
-                                              });
+                                              if (!inAppPurchaseProvider
+                                                      .getIsPremiumSubscribed &&
+                                                  !inAppPurchaseProvider
+                                                      .getIsLanguageSubscribed) {
+                                                Navigator.of(context).pop();
+                                                parentControlWidget(context);
+                                              } else {
+                                                changeLanguage(index);
+                                                pageChangeProvider
+                                                    .setFlagIndex(index);
+                                                Navigator.of(context).pop();
+                                                setState(() {
+                                                  texts[0] = texts[0];
+                                                  texts[1] = texts[1];
+                                                  texts[2] = texts[2];
+                                                });
+                                              }
                                             },
-                                            child: Image.asset(
-                                              flags[index],
+                                            child: CircleAvatar(
+                                              backgroundImage:
+                                                  AssetImage(flags[index]),
+                                              foregroundImage: (!inAppPurchaseProvider
+                                                          .getIsPremiumSubscribed &&
+                                                      !inAppPurchaseProvider
+                                                          .getIsLanguageSubscribed)
+                                                  ? const AssetImage(
+                                                      "assets/lock.png")
+                                                  : null,
                                             ),
                                           ),
                                         ),
@@ -151,9 +173,10 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                               width: 2,
                             ),
                           ),
-                          child: Image.asset(
-                            flags[pageChangeProvider.getFlagIndex],
-                            fit: BoxFit.cover,
+                          child: CircleAvatar(
+                            backgroundImage: AssetImage(
+                              flags[pageChangeProvider.getFlagIndex],
+                            ),
                           ),
                         ),
                       )

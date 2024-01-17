@@ -12,7 +12,7 @@ class InAppPurchaseWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     List<InAppPurchaseIconWidget> iconList = [
       InAppPurchaseIconWidget(
-        image: "assets/in_app_purchase_icon/play_console_logo.jpg",
+        image: "assets/in_app_purchase_icon/play_console_logo.png",
         text: texts[11],
         onTap: () async {
           final Uri uri = Uri.parse(
@@ -23,21 +23,21 @@ class InAppPurchaseWidget extends StatelessWidget {
         },
       ),
       InAppPurchaseIconWidget(
-        image: "assets/in_app_purchase_icon/play_console_logo.jpg",
+        image: "assets/in_app_purchase_icon/remove_ad_icon.png",
         text: texts[12],
         onTap: () {
           showModalBottomSheetWidget(context, 0);
         },
       ),
       InAppPurchaseIconWidget(
-        image: "assets/in_app_purchase_icon/play_console_logo.jpg",
+        image: "assets/in_app_purchase_icon/language_icon.png",
         text: texts[13],
         onTap: () {
           showModalBottomSheetWidget(context, 3);
         },
       ),
       InAppPurchaseIconWidget(
-        image: "assets/in_app_purchase_icon/play_console_logo.jpg",
+        image: "assets/in_app_purchase_icon/premium_icon.png",
         text: texts[14],
         onTap: () {
           showModalBottomSheetWidget(context, 6);
@@ -64,12 +64,12 @@ class InAppPurchaseWidget extends StatelessWidget {
         ),
       ),
       body: GridView.builder(
-        padding: const EdgeInsets.all(40),
+        padding: const EdgeInsets.all(60),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           mainAxisSpacing: 20,
           crossAxisSpacing: 20,
-          childAspectRatio: .8,
+          mainAxisExtent: 200,
         ),
         itemCount: iconList.length,
         itemBuilder: (context, index) => iconList[index],
