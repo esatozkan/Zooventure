@@ -17,7 +17,7 @@ Future<dynamic> showModalBottomSheetWidget(
           child: Container(
             padding: const EdgeInsets.only(top: 20),
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height / 2,
+            height: (MediaQuery.of(context).size.height * 2) / 3,
             child: ListView.builder(
               itemCount: inAppPurchaseProvider.getProductsDetails.length ~/ 3,
               itemBuilder: (context, index) => GestureDetector(
@@ -62,6 +62,7 @@ Future<dynamic> showModalBottomSheetWidget(
                   padding:
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   decoration: BoxDecoration(
+                    // color: Colors.amber,
                     borderRadius: BorderRadius.circular(15),
                     border: Border.all(color: Colors.black, width: 2),
                   ),
@@ -82,7 +83,10 @@ Future<dynamic> showModalBottomSheetWidget(
                     trailing: Text(
                       inAppPurchaseProvider
                           .getProductsDetails[index + productIndex].price,
-                      style: const TextStyle(fontSize: 20),
+                      style: TextStyle(
+                          fontSize: MediaQuery.of(context).size.width < 800
+                              ? 20
+                              : 35),
                     ),
                   ),
                 ),

@@ -33,9 +33,6 @@ class _AppBarWidgetState extends State<AppBarWidget> {
       "assets/flags/ru.png",
       "assets/flags/tr.png",
     ];
-    print(inAppPurchaseProvider.getIsLanguageSubscribed);
-    print(inAppPurchaseProvider.getIsPremiumSubscribed);
-    print(inAppPurchaseProvider.getIsRemoveAdSubscribed);
     return SafeArea(
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
@@ -52,8 +49,8 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                 },
                 child: Image.asset(
                   "assets/gift.gif",
-                  height: 80,
-                  width: 80,
+                  height: MediaQuery.of(context).size.width < 800 ? 80 : 120,
+                  width: MediaQuery.of(context).size.width < 800 ? 80 : 120,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -77,6 +74,10 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                 return pageChangeProvider.getPage != 2
                     ? GestureDetector(
                         onTap: () {
+                          print(inAppPurchaseProvider.getIsLanguageSubscribed);
+                          print(inAppPurchaseProvider.getIsPremiumSubscribed);
+                          print(inAppPurchaseProvider.getIsRemoveAdSubscribed);
+                          print("*****************");
                           showDialog(
                             context: context,
                             builder: (_) => SingleChildScrollView(
@@ -98,8 +99,18 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                                               },
                                               child: Image.asset(
                                                 "assets/close.png",
-                                                height: 40,
-                                                width: 40,
+                                                height: MediaQuery.of(context)
+                                                            .size
+                                                            .width <
+                                                        800
+                                                    ? 40
+                                                    : 80,
+                                                width: MediaQuery.of(context)
+                                                            .size
+                                                            .width <
+                                                        800
+                                                    ? 40
+                                                    : 80,
                                                 fit: BoxFit.cover,
                                               ),
                                             ),
@@ -113,11 +124,17 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                                             MediaQuery.of(context).size.width,
                                         child: GridView.builder(
                                           gridDelegate:
-                                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                              SliverGridDelegateWithFixedCrossAxisCount(
                                             crossAxisCount: 3,
                                             mainAxisSpacing: 10,
                                             crossAxisSpacing: 10,
-                                            mainAxisExtent: 100,
+                                            mainAxisExtent:
+                                                MediaQuery.of(context)
+                                                            .size
+                                                            .width <
+                                                        800
+                                                    ? 100
+                                                    : 200,
                                           ),
                                           itemCount: flags.length,
                                           itemBuilder: (context, index) =>
@@ -164,10 +181,15 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                         },
                         child: Container(
                           margin: const EdgeInsets.only(right: 10),
-                          height: 50,
-                          width: 50,
+                          height:
+                              MediaQuery.of(context).size.width < 800 ? 50 : 80,
+                          width:
+                              MediaQuery.of(context).size.width < 800 ? 50 : 80,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
+                            borderRadius: BorderRadius.circular(
+                                MediaQuery.of(context).size.width < 800
+                                    ? 25
+                                    : 40),
                             border: Border.all(
                               color: Colors.black,
                               width: 2,
@@ -180,9 +202,11 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                           ),
                         ),
                       )
-                    : const SizedBox(
-                        height: 50,
-                        width: 50,
+                    : SizedBox(
+                        height:
+                            MediaQuery.of(context).size.width < 800 ? 50 : 80,
+                        width:
+                            MediaQuery.of(context).size.width < 800 ? 50 : 80,
                       );
               },
             ),

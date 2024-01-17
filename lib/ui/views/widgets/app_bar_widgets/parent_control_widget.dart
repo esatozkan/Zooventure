@@ -27,7 +27,8 @@ Future<dynamic> parentControlWidget(BuildContext context) {
                     padding:
                         const EdgeInsets.only(left: 20, top: 20, bottom: 20),
                     child: CircleAvatar(
-                        radius: 22,
+                        radius:
+                            MediaQuery.of(context).size.width < 800 ? 22 : 40,
                         backgroundColor: bottomAppBarBgColor,
                         foregroundImage:
                             const AssetImage("assets/parent_control.png")),
@@ -36,7 +37,8 @@ Future<dynamic> parentControlWidget(BuildContext context) {
                     texts[9],
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 22,
+                        fontSize:
+                            MediaQuery.of(context).size.width < 800 ? 22 : 40,
                         color: bottomAppBarBgColor),
                   ),
                   Padding(
@@ -49,8 +51,10 @@ Future<dynamic> parentControlWidget(BuildContext context) {
                       child: Image.asset(
                         "assets/close.png",
                         color: bottomAppBarBgColor,
-                        height: 40,
-                        width: 40,
+                        height:
+                            MediaQuery.of(context).size.width < 800 ? 40 : 60,
+                        width:
+                            MediaQuery.of(context).size.width < 800 ? 40 : 60,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -61,8 +65,10 @@ Future<dynamic> parentControlWidget(BuildContext context) {
                 builder: (context, parentControlProvider, _) => Center(
                   child: Text(
                     "${parentControlProvider.getFirstNumber} + ${parentControlProvider.getSecondNumber}",
-                    style: const TextStyle(
-                        fontSize: 25, fontWeight: FontWeight.w600),
+                    style: TextStyle(
+                        fontSize:
+                            MediaQuery.of(context).size.width < 800 ? 25 : 40,
+                        fontWeight: FontWeight.w600),
                   ),
                 ),
               ),
@@ -108,7 +114,11 @@ Future<dynamic> parentControlWidget(BuildContext context) {
                           child: Text(
                             (index + 1).toString(),
                             style: TextStyle(
-                                fontSize: 22, color: bottomAppBarBgColor),
+                                fontSize:
+                                    MediaQuery.of(context).size.width < 800
+                                        ? 22
+                                        : 40,
+                                color: bottomAppBarBgColor),
                           ),
                         ),
                       ),

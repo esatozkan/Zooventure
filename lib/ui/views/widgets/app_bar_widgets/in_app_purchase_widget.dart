@@ -50,26 +50,32 @@ class InAppPurchaseWidget extends StatelessWidget {
         title: Text(
           texts[10],
           style: TextStyle(
-              color: bottomAppBarBgColor, fontWeight: FontWeight.bold),
+              color: bottomAppBarBgColor,
+              fontWeight: FontWeight.bold,
+              fontSize: MediaQuery.of(context).size.width < 800 ? 18 : 40),
         ),
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.of(context).pop();
-          },
-          child: Icon(
-            Icons.arrow_back_ios,
-            size: 22,
-            color: bottomAppBarBgColor,
+        leading: Padding(
+          padding: EdgeInsets.only(
+              left: MediaQuery.of(context).size.width < 800 ? 10 : 20),
+          child: GestureDetector(
+            onTap: () {
+              Navigator.of(context).pop();
+            },
+            child: Icon(
+              Icons.arrow_back_ios,
+              size: MediaQuery.of(context).size.width < 800 ? 22 : 40,
+              color: bottomAppBarBgColor,
+            ),
           ),
         ),
       ),
       body: GridView.builder(
         padding: const EdgeInsets.all(60),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           mainAxisSpacing: 20,
           crossAxisSpacing: 20,
-          mainAxisExtent: 200,
+          mainAxisExtent: MediaQuery.of(context).size.width < 800 ? 200 : 400,
         ),
         itemCount: iconList.length,
         itemBuilder: (context, index) => iconList[index],

@@ -33,7 +33,7 @@ class InAppPurchaseIconWidget extends StatelessWidget {
             text,
             style: TextStyle(
                 color: bottomAppBarBgColor,
-                fontSize: 13,
+                fontSize:MediaQuery.of(context).size.width < 800? 13:23,
                 fontWeight: FontWeight.w500),
           )
         ],
