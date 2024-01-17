@@ -48,6 +48,7 @@ Future<dynamic> parentControlWidget(BuildContext context) {
                       },
                       child: Image.asset(
                         "assets/close.png",
+                        color: bottomAppBarBgColor,
                         height: 40,
                         width: 40,
                         fit: BoxFit.cover,

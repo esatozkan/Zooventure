@@ -1,12 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import '/data/constants/constants.dart';
 
-// ignore: must_be_immutable
 class InAppPurchaseIconWidget extends StatelessWidget {
-  String image;
-  String text;
-  Function() onTap;
-  InAppPurchaseIconWidget({
+  final String image;
+  final String text;
+  final Function() onTap;
+  const InAppPurchaseIconWidget({
     Key? key,
     required this.image,
     required this.text,
@@ -29,7 +29,13 @@ class InAppPurchaseIconWidget extends StatelessWidget {
           const SizedBox(
             height: 5,
           ),
-          Text(text)
+          Text(
+            text,
+            style: TextStyle(
+                color: bottomAppBarBgColor,
+                fontSize: 13,
+                fontWeight: FontWeight.w500),
+          )
         ],
       ),
     );
