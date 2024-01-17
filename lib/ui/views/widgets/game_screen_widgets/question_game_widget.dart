@@ -3,6 +3,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
+import '/ui/providers/in_app_purchase_provider.dart';
 import '/ui/views/screens/main_screen.dart';
 import '/ui/views/widgets/game_screen_widgets/question_game_over_widget.dart';
 import '/data/repository/generate_question.dart';
@@ -20,6 +21,9 @@ class QuestionGameWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AudioPlayer audioPlayer = AudioPlayer();
+
+    InAppPurchaseProvider inAppPurchaseProvider =
+        Provider.of(context, listen: false);
 
     return Consumer<PageChangeProvider>(
       builder: (context, pageChangeProvider, _) {
@@ -44,7 +48,7 @@ class QuestionGameWidget extends StatelessWidget {
             ),
           );
         } else {
-          googleAdsProvider.showInterstitialAd();
+          googleAdsProvider.showInterstitialAd(context);
         }
 
         return SafeArea(
@@ -186,18 +190,18 @@ class QuestionGameWidget extends StatelessWidget {
                                     if (whichQuestion ==
                                             "knowWhatVirtualImage" ||
                                         whichQuestion == "knowWhatRealImage") {
-                                      await questionGameProvider
-                                          .nextQuestion(index);
+                                      await questionGameProvider.nextQuestion(
+                                          index, context);
                                     } else {
                                       if (whichQuestion ==
                                           "knowWhatAnimalTypeScreen") {
                                         await questionGameProvider.nextQuestion(
-                                            index,
+                                            index, context,
                                             isVoice:
                                                 "knowWhatAnimalTypeScreen");
                                       } else {
                                         await questionGameProvider.nextQuestion(
-                                            index,
+                                            index, context,
                                             isVoice:
                                                 "knowWhatHearAnimalScreen");
                                       }
@@ -253,31 +257,20 @@ class QuestionGameWidget extends StatelessWidget {
                         },
                       ),
                     ),
-                    // Expanded(
-                    //   flex: 1,
-                    //   child: Align(
-                    //     alignment: Alignment.bottomCenter,
-                    //     child: SafeArea(
-                    //       child: SizedBox(
-                    //         width: MediaQuery.of(context).size.width,
-                    //         height: 50,
-                    //         child:
-                    //             googleAdsProvider.getIsBannerAdLoaded != false
-                    //                 ? AdWidget(ad: googleAdsProvider.bannerAd!)
-                    //                 : const Text(""),
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: SafeArea(
                         child: SizedBox(
                           width: MediaQuery.of(context).size.width,
                           height: 50,
-                          child: googleAdsProvider.getIsBannerAdLoaded != false
-                              ? AdWidget(ad: googleAdsProvider.bannerAd!)
-                              : const Text(""),
+                          child:
+                              (googleAdsProvider.getIsBannerAdLoaded != false &&
+                                      !inAppPurchaseProvider
+                                          .getIsRemoveAdSubscribed &&
+                                      !inAppPurchaseProvider
+                                          .getIsPremiumSubscribed)
+                                  ? AdWidget(ad: googleAdsProvider.bannerAd!)
+                                  : const Text(""),
                         ),
                       ),
                     ),

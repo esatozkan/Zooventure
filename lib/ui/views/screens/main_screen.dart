@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:onepref/onepref.dart';
 import 'package:provider/provider.dart';
 import '/ui/providers/in_app_purchase_provider.dart';
 import '../widgets/bottom_nav_bar_widget.dart';
@@ -25,9 +26,41 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
-    Provider.of<InAppPurchaseProvider>(context, listen: false).getProducts();
+    InAppPurchaseProvider inAppPurchaseProvider =
+        Provider.of<InAppPurchaseProvider>(context, listen: false);
+
+    inAppPurchaseProvider.restoreSubscription();
+
+    inAppPurchaseProvider.getIApEngine.inAppPurchase.purchaseStream
+        .listen((list) {
+      if (list.isNotEmpty) {
+        // restore subscription
+        for (var element in list) {
+          if (element.productID.contains("remove_ad_")) {
+            OnePref.setRemoveAds(true);
+          }
+          if (element.productID.contains("premium_")) {
+            OnePref.setPremium(true);
+          }
+          if (element.productID.contains("language_")) {
+            OnePref.setBool("isLanguageSubscribed", true);
+          }
+        }
+      } else {
+        // do nothing or deactivate the subscription if the user is premium
+        OnePref.setPremium(false);
+        OnePref.setRemoveAds(false);
+        OnePref.setBool("isLanguageSubscribed", false);
+      }
+    });
+
+    inAppPurchaseProvider.getProducts();
+    inAppPurchaseProvider.getIApEngine.inAppPurchase.purchaseStream
+        .listen((listOfPurchaseDetails) {
+      inAppPurchaseProvider.listenPurchases(listOfPurchaseDetails);
+    });
     googleAdsProvider.loadBannerAd();
-    googleAdsProvider.loadInterstitialAd();
+    googleAdsProvider.loadInterstitialAd(context);
     super.initState();
   }
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '/data/services/text_service.dart';
+import '/ui/views/widgets/show_information_snackbar.dart';
 import '../../../providers/in_app_purchase_provider.dart';
 
 Future<dynamic> showModalBottomSheetWidget(
@@ -19,12 +21,18 @@ Future<dynamic> showModalBottomSheetWidget(
             child: ListView.builder(
               itemCount: inAppPurchaseProvider.getProductsDetails.length ~/ 3,
               itemBuilder: (context, index) => GestureDetector(
-                onTap: () => {
-                  Navigator.of(context).pop(),
-                  inAppPurchaseProvider.getIApEngine.handlePurchase(
-                      inAppPurchaseProvider
-                          .getProductsDetails[index + productIndex],
-                      inAppPurchaseProvider.getProductIds)
+                onTap: () {
+                  if (productIndex == 0) {
+                    Navigator.of(context).pop();
+                    if (!inAppPurchaseProvider.getIsRemoveAdSubscribed) {
+                      inAppPurchaseProvider.getIApEngine.handlePurchase(
+                          inAppPurchaseProvider
+                              .getProductsDetails[index + productIndex],
+                          inAppPurchaseProvider.getProductIds);
+                    } else {
+                      showInformationSnackbar(context, texts[15]);
+                    }
+                  }
                 },
                 child: Container(
                   margin:

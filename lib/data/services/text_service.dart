@@ -14,6 +14,7 @@ List<String> textTr = [
   "Reklamları Kaldır",
   "Dil Seçenekleri",
   "Premium",
+  "Abonelik Bulunmaktadır",
 ];
 List<String> textEn = [
   "Animal Names",
@@ -31,6 +32,7 @@ List<String> textEn = [
   "Remove Ads",
   "Language Options",
   "Premium",
+  "Subscription Available",
 ];
 List<String> textHi = [
   "जानवरों के नाम",
@@ -48,6 +50,7 @@ List<String> textHi = [
   "विज्ञापन हटाएँ",
   "भाषा विकल्प",
   "अधिमूल्य",
+  "सदस्यता उपलब्ध है",
 ];
 List<String> textDe = [
   "Tierbezeichnungen",
@@ -65,6 +68,7 @@ List<String> textDe = [
   "Anzeigen Entfernen",
   "Sprachoptionen",
   "Prämie",
+  "Abonnement Verfügbar",
 ];
 List<String> textIt = [
   "Nomi Degli Animali",
@@ -82,6 +86,7 @@ List<String> textIt = [
   "Rimuovere Gli Annunci",
   "Opzioni Della Lingua",
   "Premio",
+  "Abbonamento Disponibile",
 ];
 List<String> textId = [
   "Nama-Nama Hewan",
@@ -97,8 +102,9 @@ List<String> textId = [
   "Toko Mainan",
   "Aplikasi Lain",
   "Hilangkan iklan",
-  "Pilihan Bahasa"
-      "Premium",
+  "Pilihan Bahasa",
+  "Premium",
+  "Langganan Tersedia",
 ];
 
 List<String> textPt = [
@@ -117,6 +123,7 @@ List<String> textPt = [
   "Remover Propagandas",
   "Opções De idioma",
   "Prêmio",
+  "Assinatura Disponível",
 ];
 
 List<String> textRu = [
@@ -135,6 +142,7 @@ List<String> textRu = [
   "убрать рекламу",
   "Языковые параметры",
   "премия",
+  "Доступна подписка",
 ];
 
 List<String> texts = [];

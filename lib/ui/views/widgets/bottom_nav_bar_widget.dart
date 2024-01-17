@@ -22,7 +22,7 @@ class BottomNavBar extends StatelessWidget {
           GestureDetector(
             onTap: () {
               pageChangeProvider.setPage(0);
-              googleAdsProvider.showInterstitialAd();
+              googleAdsProvider.showInterstitialAd(context);
             },
             child: Opacity(
               opacity: pageChangeProvider.getPage == 0 ? 1 : 0.5,
@@ -38,7 +38,7 @@ class BottomNavBar extends StatelessWidget {
           GestureDetector(
             onTap: () {
               pageChangeProvider.setPage(1);
-              googleAdsProvider.showInterstitialAd();
+              googleAdsProvider.showInterstitialAd(context);
             },
             child: Opacity(
               opacity: pageChangeProvider.getPage == 1 ? 1 : 0.5,
@@ -54,7 +54,7 @@ class BottomNavBar extends StatelessWidget {
           GestureDetector(
             onTap: () {
               pageChangeProvider.setPage(2);
-              googleAdsProvider.showInterstitialAd();
+              googleAdsProvider.showInterstitialAd(context);
             },
             child: Opacity(
               opacity: pageChangeProvider.getPage == 2 ? 1 : 0.5,
