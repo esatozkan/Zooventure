@@ -74,10 +74,6 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                 return pageChangeProvider.getPage != 2
                     ? GestureDetector(
                         onTap: () {
-                          print(inAppPurchaseProvider.getIsLanguageSubscribed);
-                          print(inAppPurchaseProvider.getIsPremiumSubscribed);
-                          print(inAppPurchaseProvider.getIsRemoveAdSubscribed);
-                          print("*****************");
                           showDialog(
                             context: context,
                             builder: (_) => SingleChildScrollView(

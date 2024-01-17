@@ -64,7 +64,7 @@ Future<dynamic> parentControlWidget(BuildContext context) {
               Consumer<ParentControlProvider>(
                 builder: (context, parentControlProvider, _) => Center(
                   child: Text(
-                    "${parentControlProvider.getFirstNumber} + ${parentControlProvider.getSecondNumber}",
+                    "${parentControlProvider.getFirstNumber} + ${parentControlProvider.getSecondNumber} =",
                     style: TextStyle(
                         fontSize:
                             MediaQuery.of(context).size.width < 800 ? 25 : 40,

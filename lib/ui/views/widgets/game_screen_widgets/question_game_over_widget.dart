@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '/data/constants/constants.dart';
 import '/ui/providers/page_change_provider.dart';
 import '/data/services/text_service.dart';
 import '/ui/providers/question_game_provider.dart';
@@ -17,6 +19,9 @@ class QuestionGameOverWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     PageChangeProvider pageChangeProvider =
         Provider.of<PageChangeProvider>(context, listen: false);
+    final controller =
+        ConfettiController(duration: const Duration(milliseconds: 1500));
+    controller.play();
     return Consumer<QuestionGameProvider>(
       builder: (context, questionGameProvider, _) => SingleChildScrollView(
         child: Visibility(
@@ -25,45 +30,60 @@ class QuestionGameOverWidget extends StatelessWidget {
               ? true
               : false,
           child: Container(
-            width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
-            color: Colors.white,
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    "assets/games/game_over.gif",
-                    height: MediaQuery.of(context).size.height,
-                    width: MediaQuery.of(context).size.width/2,
-                    fit: BoxFit.cover,
+            width: MediaQuery.of(context).size.width,
+            color: itemColor,
+            child: Column(
+              children: [
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: ConfettiWidget(
+                    confettiController: controller,
+                    gravity: .3,
+                    blastDirectionality: BlastDirectionality.explosive,
+                    numberOfParticles: 100,
                   ),
-                  TextButton(
-                    onPressed: () {
-                      if (whichQuestion == "knowWhatRealImage") {
-                        pageChangeProvider.setPage(4);
-                      } else if (whichQuestion == "knowWhatVirtualImage") {
-                        pageChangeProvider.setPage(6);
-                      } else if (whichQuestion == "knowWhatAnimalTypeScreen") {
-                        pageChangeProvider.setPage(5);
-                      } else if (whichQuestion == "knowWhatHearAnimalScreen") {
-                        pageChangeProvider.setPage(3);
-                      }
-                    },
-                    child: textButton(
-                      texts[7],
-                      40,
-                    ),
+                ),
+                Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        "assets/games/game_over.gif",
+                        height: MediaQuery.of(context).size.width,
+                        width: MediaQuery.of(context).size.width,
+                        fit: BoxFit.cover,
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          if (whichQuestion == "knowWhatRealImage") {
+                            pageChangeProvider.setPage(4);
+                          } else if (whichQuestion == "knowWhatVirtualImage") {
+                            pageChangeProvider.setPage(6);
+                          } else if (whichQuestion ==
+                              "knowWhatAnimalTypeScreen") {
+                            pageChangeProvider.setPage(5);
+                          } else if (whichQuestion ==
+                              "knowWhatHearAnimalScreen") {
+                            pageChangeProvider.setPage(3);
+                          }
+                        },
+                        child: textButton(
+                          texts[7],
+                          40,
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          pageChangeProvider.setPage(2);
+                        },
+                        child: textButton(texts[8], 60),
+                      ),
+                    ],
                   ),
-                  TextButton(
-                    onPressed: () {
-                      pageChangeProvider.setPage(2);
-                    },
-                    child: textButton(texts[8], 60),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
@@ -79,17 +99,17 @@ Widget textButton(String text, double horizontal) {
       vertical: 10,
     ),
     decoration: BoxDecoration(
-      color: const Color(0xff01ddb3),
+      color: const Color(0xffc2394b),
       borderRadius: BorderRadius.circular(10),
       border: Border.all(
         width: 2,
-        color: const Color(0xff01ddb3),
+        color: itemColor,
       ),
     ),
     child: Text(
       text,
-      style: const TextStyle(
-        color: Color(0xffeb92e5),
+      style: TextStyle(
+        color: itemColor,
         fontSize: 30,
         fontWeight: FontWeight.bold,
       ),
