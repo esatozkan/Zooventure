@@ -3,8 +3,6 @@ import '../services/text_service.dart';
 
 void changeLanguage(int index) {
   texts.clear();
-  print(animals.length);
-  print("*************");
   if (index == 0) {
     texts.addAll(textDe);
     for (int i = 0; i < animals.length; i++) {
