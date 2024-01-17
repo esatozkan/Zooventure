@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+import 'package:in_app_purchase_android/in_app_purchase_android.dart';
 import 'package:flutter/material.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:onepref/onepref.dart';
@@ -15,7 +18,10 @@ class InAppPurchaseProvider extends ChangeNotifier {
     ProductId(id: "premium_monthly", isConsumable: false),
     ProductId(id: "premium_yearly", isConsumable: false),
   ];
-  bool isRemoveAdSubscribed = false;
+
+  bool isRemoveAdSubscribed = OnePref.getRemoveAds() ?? false;
+  bool isLanguageSubscribed = OnePref.getBool("isLanguageSubscribed") ?? false;
+  bool isPremiumSubscribed = false;
 
   IApEngine iApEngine = IApEngine();
 
@@ -23,6 +29,8 @@ class InAppPurchaseProvider extends ChangeNotifier {
   List<ProductId> get getProductIds => _productIds;
 
   bool get getIsRemoveAdSubscribed => isRemoveAdSubscribed;
+  bool get getIsLanguageSubscribed => isLanguageSubscribed;
+  bool get getIsPremiumSubscribed => isPremiumSubscribed;
 
   IApEngine get getIApEngine => iApEngine;
 
@@ -48,14 +56,89 @@ class InAppPurchaseProvider extends ChangeNotifier {
                 .indexWhere((element) => element.id == productOrder[i]);
             _products.add(res.productDetails[index]);
           }
-
-          _products.forEach((element) {
-            print(element.id);
-          });
         });
       }
     });
   }
-}
 
-//17. dakika
+  Future<void> listenPurchases(List<PurchaseDetails> list) async {
+    List<String> removeAdProducts = [
+      "remove_ad_weekly",
+      "remove_ad_monthly",
+      "remove_ad_yearly",
+    ];
+    List<String> languageProducts = [
+      "language_weekly",
+      "language_monthly",
+      "language_yearly",
+    ];
+
+    for (PurchaseDetails purchaseDetails in list) {
+      if (removeAdProducts.contains(purchaseDetails.productID)) {
+        if (list.isNotEmpty) {
+          if (purchaseDetails.status == PurchaseStatus.restored ||
+              purchaseDetails.status == PurchaseStatus.purchased) {
+            Map purchaseData = json
+                .decode(purchaseDetails.verificationData.localVerificationData);
+
+            if (purchaseData["acknowledged"]) {
+              //restore purchase
+              isRemoveAdSubscribed = true;
+              OnePref.setRemoveAds(isRemoveAdSubscribed);
+            } else {
+              //first time purchase
+              if (Platform.isAndroid) {
+                final InAppPurchaseAndroidPlatformAddition androidAddition =
+                    iApEngine.inAppPurchase.getPlatformAddition<
+                        InAppPurchaseAndroidPlatformAddition>();
+                await androidAddition
+                    .consumePurchase(purchaseDetails)
+                    .then((value) {
+                  updateIsRemoveAdSubscription(true);
+                });
+              }
+
+              //complete purchase
+              if (purchaseDetails.pendingCompletePurchase) {
+                await iApEngine.inAppPurchase
+                    .completePurchase(purchaseDetails)
+                    .then((value) {
+                  updateIsRemoveAdSubscription(true);
+                });
+              }
+            }
+          }
+        } else {
+          updateIsRemoveAdSubscription(false);
+        }
+      } else if (languageProducts.contains(purchaseDetails.productID)) {
+        if (list.isNotEmpty) {
+          if (purchaseDetails.status == PurchaseStatus.restored ||
+              purchaseDetails.status == PurchaseStatus.purchased) {
+            Map purchaseData = json
+                .decode(purchaseDetails.verificationData.localVerificationData);
+          }
+        } else {
+          updateIsLanguageSubscription(false);
+        }
+      } else {}
+    }
+  }
+
+  void updateIsRemoveAdSubscription(bool value) {
+    isRemoveAdSubscribed = value;
+    OnePref.setRemoveAds(isRemoveAdSubscribed);
+    notifyListeners();
+  }
+
+  void updateIsLanguageSubscription(bool value) {
+    isLanguageSubscribed = value;
+    OnePref.setBool("isLanguageSubscribed", isLanguageSubscribed);
+    notifyListeners();
+  }
+
+
+  void restoreSubscription(){
+    iApEngine.inAppPurchase.restorePurchases();
+  }
+}

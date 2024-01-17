@@ -28,7 +28,7 @@ class QuestionGameProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> nextQuestion(int index, {String isVoice = ""}) async {
+  Future<void> nextQuestion(int index,context, {String isVoice = ""}) async {
     answerControl = !answerControl;
 
     if (question[questionIndex].option.values.toList()[index] == false) {
@@ -60,7 +60,7 @@ class QuestionGameProvider extends ChangeNotifier {
               AssetSource(question[questionIndex].question.animalVoice),
             );
           } else {
-            googleAdsProvider.showInterstitialAd();
+            googleAdsProvider.showInterstitialAd(context);
           }
         });
       }

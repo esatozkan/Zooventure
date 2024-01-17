@@ -36,7 +36,7 @@ class GridCardWidget extends StatelessWidget {
                       ),
                     )
                     .then(
-                      (value) => googleAdsProvider.showInterstitialAd(),
+                      (value) => googleAdsProvider.showInterstitialAd(context),
                     )
                 : await voicePlayer
                     .play(
@@ -45,7 +45,7 @@ class GridCardWidget extends StatelessWidget {
                       ),
                     )
                     .then(
-                      (value) => googleAdsProvider.showInterstitialAd(),
+                      (value) => googleAdsProvider.showInterstitialAd(context),
                     );
           },
           child: ClipRRect(
